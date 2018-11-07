@@ -6,6 +6,7 @@ from django.forms.extras.widgets import SelectDateWidget
 
 # import user model
 from .models import User
+from .models import Deposit, Withdrawal
 
 class UserRegistrationForm(UserCreationForm):
     born = forms.DateField(
@@ -41,7 +42,7 @@ class UserLoginForm(forms.Form):
     """
     form for allowing user login
     """
-    def clean(self, *args, *kwargs):
+    def clean(self, *args, **kwargs):
         account_no = self.cleaned_data.get("account_no")
         password = self.cleaned_data.get("password")
 
@@ -57,4 +58,20 @@ class UserLoginForm(forms.Form):
                     raise forms.ValidationError("Account is Inactive")
             else:
                 raise forms.ValidationError("This Account Doesn't Exist.")
-        return super(UserLoginForm, self).clean( *args, **kwargs)
+        return super(UserLoginForm, self).clean(*args, **kwargs)
+
+
+class DepositForm(forms.ModelForm):
+    """
+    form for depositing cash
+    """
+    class Meta:
+        model = Deposit
+        fields = ["amount"]
+
+class WithdrawalForm(forms.ModelForm):
+    """ form for withdrawing cash"""
+
+    class Meta:
+        model =Withdrawal
+        fields = ["amount"]
