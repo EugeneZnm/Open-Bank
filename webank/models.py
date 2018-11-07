@@ -4,6 +4,13 @@ from django.urls import reverse
 from django.core.validators import ( RegexValidator, MinValueValidator, MaxValueValidator )
 # from .managers import UserManager
 from django.contrib.auth.models import (AbstractBaseUser, BaseUserManager)
+from django.db.models import Max
+from django.db.models.signals import pre_save
+from django.dispatch import receiver
+
+from decimal import Decimal
+from django.conf import settings
+
 # Accounts models here.
 
 
@@ -61,12 +68,13 @@ class User(AbstractBaseUser):
         ]
     )
 
-    gender =models.CharField(max_length=6, choices=GENDER_CHOICE)
-    account_type = models.CharField(max_length=14, choices=Account_Choice)
+    gender = models.CharField(max_length=6, choices=GENDER_CHOICE)
+    born = models.DateField(null=True, blank=True)
     email = models.EmailField(unique=True, blank=False)
     phone = models.IntegerField(unique=True)
     city = models.CharField(max_length=256)
     nationality = models.CharField(max_length=300)
+    account_type = models.CharField(max_length=14, choices=Account_Choice)
     balance = models.DecimalField(
         default=0,
         max_digits=12,
@@ -88,5 +96,52 @@ class User(AbstractBaseUser):
     USERNAME_FIELD = "email"
     REQUIRED_FIELDS = []
 
+
+@receiver(pre_save,sender=User)
+def create_account_no(sender, instance, *args, **kwargs):
+# checking whether user has account number
+    if not instance.account_no:
+        # getting largest account number
+        largest = User.objects.all().aggregate(
+            Max("account_no"))['account_no__Max']
+        if largest:
+            # creatigaccount new number
+            instance.account_no = largest + 1
+        else:
+            instance.account_no = 1000000
+
     def __str__(self):
         return str(self.account_no)
+
+
+# transactions models
+class Deposit(models.Model):
+    """ Models for user deposit """
+    user = models.ForeignKey(User)
+    amount = models.DecimalField(
+        decimal_places=2,
+        max_digits=12,
+        validators=[
+            MinValueValidator(Decimal('100.00'))
+        ]
+    )
+    timestamp = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return str(self.user)
+
+
+class Withdrawal(models.Model):
+    user = models.ForeignKey(User)
+    amount = models.DecimalField(
+        decimal_places=2,
+        max_digits=12,
+        validators=[
+            MinValueValidator(Decimal('50.00'))
+        ]
+    )
+
+    timestamp = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return str(self.user)
