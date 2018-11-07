@@ -1,0 +1,13 @@
+Django==1.11.4
+django-materialize==1.0.1a2
+billiard==3.5.0.3
+celery==4.1.0
+Django==1.11.4
+django-celery-beat==1.0.1
+django-crispy-forms==1.6.1
+kombu==4.1.0
+olefile==0.44
+Pillow==4.2.1
+redis==2.10.6
+vine==1.1.4alizecss-form==1.1.10
+pytz==2018.7

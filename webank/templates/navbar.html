@@ -1,0 +1,41 @@
+  <!--<nav>-->
+    <!--<div class="nav-wrapper">-->
+      <!--<a href="{% url 'home' %}" class="brand-logo">WE-BANK</a>-->
+      <!--<a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>-->
+      <!--<ul class="right hide-on-med-and-down">-->
+         <!--<li><a href="{% url 'home' %}">Home </a></li>-->
+         <!--<li><a href="{% url 'transactions:deposit' %}">Deposit</a></li>-->
+         <!--<li><a href="{% url 'transactions:withdrawal' %}">Withdraw</a></li>-->
+      <!--</ul>-->
+    <!--</div>-->
+  <!--</nav>-->
+  <nav>
+    <div class="nav-wrapper">
+      <a href="{% url 'home' %}" class="brand-logo center">WE-BANK</a>
+      <ul id="nav-mobile" class="left hide-on-med-and-down">
+        <li><a href="{% url 'home' %}">Home </a></li>
+         <li><a href="{% url 'transactions:deposit' %}">Deposit</a></li>
+         <li><a href="{% url 'transactions:withdrawal' %}">Withdraw</a></li>
+      </ul>
+        <ul class="right hide-on-med-and-down">
+            {% if request.user.is_authenticated %}
+            <li><a href="{% url 'logout' %}">Logout</a></li>
+            {% else %}
+            <li><a href="{% url 'login' %}">Login</a></li>
+            <li><a href="{% url 'register' %}">Create an Account</a></li>
+            {% endif %}
+        </ul>
+    </div>
+  </nav>
+  <ul class="sidenav" id="mobile-demo">
+    <li><a href="{% url 'home' %}">Home </a></li>
+    <li><a href="{% url 'transactions:deposit' %}">Deposit</a></li>
+    <li><a href="{% url 'transactions:withdrawal' %}">Withdraw</a></li>
+    {% if request.user.is_authenticated %}
+    <li><a href="{% url 'logout' %}">Logout</a></li>
+    {% else %}
+    <li><a href="{% url 'login' %}">Login</a></li>
+    <li><a href="{% url 'register' %}">Create an Account</a></li>
+    {% endif %}
+  </ul>
+          

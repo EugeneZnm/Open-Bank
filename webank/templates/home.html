@@ -1,10 +1,20 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>$Title$</title>
-</head>
-<body>
-$END$
-</body>
-</html>
+{% extends 'base.html' %}
+
+{% block title %} {{ block.super }}{% endblock title %}
+
+{% block content %}
+<div class="container section grey darken-2" style="padding-top: 50px;">
+<div class="text-center">
+      <div class="container">
+        <h1 class="jumbotron-heading"  style="font-weight: 700; background: rgba(96, 125, 139, 0.4); padding: 50px;">WE-BANK</h1>
+        <hr>
+          <p class="lead text-muted">Welcome to WE-BANK, convenient banking for the masses. Using technology to make you bank with ease."</p>
+          <p>
+              <a class="waves-effect waves-light btn" href="{% url 'login' %}" role="button">LOGIN</a>
+              <a class="waves-effect waves-light btn" href="{% url 'register' %}" role="button">BANK WITH US</a>
+          </p>
+      </div>
+</div>
+</div>
+
+{% endblock content %}

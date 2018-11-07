@@ -15,7 +15,26 @@ Including another URLconf
 """
 from django.conf.urls import url
 from django.contrib import admin
+from django.conf import settings
+from django.conf.urls.static import static
+from webank.views import deposit,widthdraw,Home,logout,register_view,login_view
 
 urlpatterns = [
+    url(r'^$', Home, name='home'),
     url(r'^admin/', admin.site.urls),
+    url(r'^deposit/$',deposit, name='deposit'),
+    url(r'^withdrawal/$', widthdraw, name='withdrawal'),
+    url(r'^register/$', register_view, name='register'),
+    url(r'^login/$', login_view, name='login'),
+    url(r'^logout/$', logout, name='logout'),
 ]
+
+if settings.DEBUG:
+    urlpatterns += static(
+        settings.STATIC_URL,
+        document_root=settings.STATIC_ROOT
+        )
+    urlpatterns += static(
+        settings.MEDIA_URL,
+        document_root=settings.MEDIA_ROOT
+        )
