@@ -17,13 +17,13 @@ from django.conf.urls import url
 from django.contrib import admin
 from django.conf import settings
 from django.conf.urls.static import static
-from webank.views import deposit,widthdraw,Home,logout,register_view,login_view
+from webank.views import deposit_view,withdrawal_view,home,logout,register_view,login_view
 
 urlpatterns = [
-    url(r'^$', Home, name='home'),
+    url(r'^$', home, name='home'),
     url(r'^admin/', admin.site.urls),
-    url(r'^deposit/$',deposit, name='deposit'),
-    url(r'^withdrawal/$', widthdraw, name='withdrawal'),
+    url(r'^deposit/$',deposit_view, name='deposit'),
+    url(r'^withdrawal/$', withdrawal_view, name='withdrawal'),
     url(r'^register/$', register_view, name='register'),
     url(r'^login/$', login_view, name='login'),
     url(r'^logout/$', logout, name='logout'),

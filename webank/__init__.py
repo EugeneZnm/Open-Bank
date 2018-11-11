@@ -1,1 +1,1 @@
-default_app_config = 'accounts.apps.WebankConfig'
+default_app_config = 'webank.apps.WebankConfig'

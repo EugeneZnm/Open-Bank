@@ -6,50 +6,124 @@
 {% include "messages.html" %}
 
     <div class="page-header">
-      <h1 class="text-center"><b>Banking System</b><br><small>WE-BANK INC.</small></h1>
+      <h1 class="text-center"><b>OPEN BANK INC</b><br><small>Welcome To Your Account.</small></h1>
     </div>
     
 <div class="row">
 
-  <div class="col-xs-12 col-md-8 text-left">
-    <h4><b>Account Name: </b>{{ user.full_name }}</h4>
-    <h4><b>Date of Birth: </b>{{ user.birth_date }}</h4>
-    <h4><b>Gender: </b>{{ user.gender }}</h4>
-    <h4><b>Contact No: </b>{{ user.contact_no }}</h4>
-    <h4><b>Email Address: </b>{{ user.email }}</h4>
-    <h4><b>Address: </b>{{ user.Address }}</h4>
-    <h4><b>Location: </b>{{ user.city }}, {{ user.country }}</h4>
-    <h4><b>Occupation: </b>{{ user.occupation }}</h4>
+  <div class="col-xs-12 col-md-6 text-left">
+    <ul class="collection">
+        <li class="collection-item avatar">
+          <img src="data:image/png;base64,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" alt="" class="circle">
+          <h6>Account Name: </b>{{ user.full_name }}<br>
+          </h6>
+          <a href="#!" class="secondary-content"><i class="material-icons"></i></a>
+        </li>
+    </ul>  
+    <ul class="collection">
+        <li class="collection-item avatar">
+          <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACgAAAAoCAYAAACM/rhtAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAALRSURBVFhHYxgFo2CoADk5DUkww96eRVJNTQTEVFFR4ZOUNOYCsZWU9MSAFBOILS+vJQGiQYCQPqoAUS0tHjlF7YMgtpyytpW8gvYUEFteXidDXkkrEsxW0Fosq6ypDWLD1BKjj2wA8qWZuf1ST3uPF/EeQR/0NE1+J3uFvg909PpsaWj9A8R2s3T+5mnt+hXENtO3/Bnm7PsJxIapJaQv3C3wtbmlw1kZRV1dqLVEA0YTE7vTVyfN+/u5bsb/19VT/6c6+P8HsU/lNP9v9YsHs5fEFPzfnFQOZld5Rv2/VtQJZsPUEqPvfd+i/0Guvm8UFDTloXYTBqDomFlU/RlsQO20/7Ozyv8fLGgGG0gN/LB8wv9pWaX/LxdDPPRo8uL/JhZ286HWEwYa2kZZV/rn/ANpPp/f+n/L2lX/JxVWYVhELl6eVvH/1o0L/2ekl4L5nzrm/zczd7gMtZ4wMDS2Kro9YR7cwB1Ztf9vlfTA+ZRiUKysT6/8/7JqEkSsdc5/UzO7G1DrCQN0B9Ick+PACcA0Mj+jnGb4atv0/6vy6/6fqO//Py+z/L+hkc0dqPWEAciB6zes+v/v73u64I8fnpAegqMORMI0ceD5s9v+79mz/v/jR1f/z5nd9X/J4glk8UFmUdWBb9/c///57d7//76t+r9o0YT/J0/u+3/t4hSy+SAzqepAkAWb1tb/v3hm4v9Zs7oo5oPMpKoDf/549f/ixRNg/PLFXYr5IDMpciClaYwQn2IHgqKEkjRGiE8VB1IzzaHzKXYgtdMcOp9iB1I7zaHzKXYgKEqomebQ+VRxIDXTHDqfYgdSO82h8yl2IDXSGCE8oGkQ3THY8IClwQf3TmI4BhsesDT4+9dbDMdgwxQ5kB54+DlQSUkvKC096wssqmiNN25Y/c/c3P4Q1HqiAKOeoVWRpZXTWnpgM3O72crK2rJQu0fBKBhEgIEBAFH770jkNIhOAAAAAElFTkSuQmCC" alt="" class="circle">
+          <h6>Date of Birth: </b>{{ user.birth_date }}<br>
+          </h6>
+          <a href="#!" class="secondary-content"><i class="material-icons"></i></a>
+        </li>
+    </ul> 
+    <ul class="collection">
+        <li class="collection-item avatar">
+          <img src="data:image/png;base64,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" alt="" class="circle">
+          <h6>Contact No: </b>{{ user.contact_no }}<br>
+          </h6>
+          <a href="#!" class="secondary-content"><i class="material-icons"></i></a>
+        </li>
+    </ul> 
+    <ul class="collection">
+        <li class="collection-item avatar">
+          <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACgAAAAoCAYAAACM/rhtAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAS9SURBVFhH7ZdfTNVlGMd/rXK6uVXrFo8zRYHMUpT4fwacGcjfGWcxjnBsE0LxH1vERRLLRWGTnRgXCU3NmTe0gNlJF4w/Lu+qedXcmt6wYReMja0tAd336fn+zqvC4cUwPVzx3Z49PJ/3eZ7vi5537DgrWtGKnkJxDVgTdwihuHrcWVcvEutQr3GN9vVBWW2u8Hi9VofuDXUY23gQ1RsOii/W4fqon0aXucLiSvLLqi21mNlcgwKDlkUJNSjUmKa/QXYl1YrnjQMizAYti5bsm1wlnuT3RZgNWhYt6ptajjVp1QilBnEnLSgS60itxnhaEO3eqAeRoRfjObNBEWXtQ3d2Fcaz96HaWyW+WEdWFYL00zzvQfBi2VVRF/TrBzKvEjO+SpnKrVyeR0Ef+qnvNP0Ndnx6MeXCbJDjFPnFs6dCpKAC5/dU4F5hBY6bI1eNv+BY43Xc/r/x4XUcMatccT99In4i9DdHD+8yl7mw1B+BJeUIlJbjbokf39TWyos8/3wUu1qvYaL1msiTByY4zz3cx73ufvWZ68tzysb4X+zxvyvCzLq8HGnle/GXf6+MlpXhVbKOIWzsHMLNzmGRJYf2c47z3MN93Mv9ZNG+lI05VUXiCZSJMBvkvFeKdYEy3AiU4lagBElkl8LyyrcDGLgwIPJfwT72c47z7h7dx71klM3Xxly4vyQKqg75Ze3+YvQGi2UqWIx8spEReaHvCr7uvyqyWPCcfeznHOe5h/vIHsjma71LrRYawmzQHMlzNUVo1bhXU4hjBjpDYTQMh3F/OCzyKHCf3LQ47HfndJ57DH4om6+NOUe1OFwgwmzQAh3JR+BwAe7W56O7NjnyeH7vQ/Gv/fj7t34RZtbkPGcf+zlHZpPN13qXoz7xNLyjULNBVh3fjQD7GnZjpD4v8nhuf49tf/6ATmbW5DxnH/vJFpPN13qXJi00hNmgBWrMRU5THiY/8uGq5htNPtzSnxPNsSvW5Dw3fZOcM8cLZPO1MadFi+ZcEWaD5unjXHzQnIvZEzkI6fN/vsUra/Xn3uYcmfokV/ysmVmTs2Yf+znHebNqnmy+1ru0ZIjnpFehZoNc9ajJSS86PvViVvMBg12JfuiVn9D4h7PMrMlNiyvOmfkO7jPYlc3Xepc2LdqyRJgNctp88lJbJn7+IhMTpzLhNXiBQl55+VQ6djIbtECc5x7u416D7b4W5nylRXuGCDPr9lRsas/AzfZ0/PFleuQvwdOKe7jP3av7yaJ9KRtzYWdqBHakIKfzbUx2puJKV/Kj3/ZZiPu4l/vpM9fXtMy7i0HuoKcrReRMCj7TmO3ahVD05+VZiXu5nz70oy/9zbGjrLArBdM9SXO+k1zQhnPJIud2YFZj3mOIlejj+kV8K8/uFJ/m4NkdGNM4Y9oi4gW/2y5y8U0UGrQsoh99H8TFtzB+cTtOn/dGfS/Wf05PzzYRZoOWRUv2vawNfVtFmA2yqncrQr2vY3DJof1m1Kql+vI3WRVOxMxPiY//PnI5EXXhRGlbarDfjFoVTkDhj0lRD2IxDWxG1+AWjA3Go3owXnwxjwQE6ae+8x/EYhpZL6tHNuG0xvhovEisgz6un/qaK6xoRSt6cjnOvzdY8gbSltOkAAAAAElFTkSuQmCC" alt="" class="circle">
+          <h6>Email: </b>{{ user.email }}<br>
+          </h6>
+          <a href="#!" class="secondary-content"><i class="material-icons"></i></a>
+        </li>
+    </ul>
+    <ul class="collection">
+        <li class="collection-item avatar">
+          <img src="data:image/png;base64,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" alt="" class="circle">
+          <h6>Address: </b>{{ user.Address }}<br>
+          </h6>
+          <a href="#!" class="secondary-content"><i class="material-icons"></i></a>
+        </li>
+    </ul>
+    
+   
   </div>
-  <div class="col-xs-6 col-md-4 text-left">
-    <h4><b>Account Created: </b>{{ user.date_joined|date:'d-m-Y' }}</h4>
-    <h4><b>Account No: </b>{{ user.account_no }}</h4><br><br>
-    <div class="well">
-    <h4 class="card"><b>Account Balance: </b>{{ user.balance }} $</h4>
-    <a class="waves-effect waves-light btn" href="{% url 'transactions:deposit' %}">Deposit</a>
-    <a class="waves-effect waves-light btn" href="{% url 'transactions:withdrawal' %}">Withdraw</a>
-    </div>
+  <div class="col-xs-6 col-md-6 text-left">
+      <ul class="collection">
+          <li class="collection-item avatar">
+            <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACgAAAAoCAYAAACM/rhtAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAT/SURBVFhH7ZZ7TNUFFMdZ6TJdwx4urRmUPOSqF5SrgEtuCuLlcS/yuDzkDXK5IrnE0j/KqdCyrRbaKixogpqbXRNtaRMc+PYf2mr2X9PZWuvhYuWgDbTv6ZyfZzfvJFIvV/qDz/bd75zv95yz33hcCBpnnDvBSQ/OXIunZqyjWNEzL2GGeJqOHSG1SAtdg32htegLrSXyFfpC1mBPiBupOn7/CK+lmFlunGINhrlxILwGhZFuRJqLMUUktXiSycysGjrJfbSuBxaTi5xRqzHAOmiqQpja/4rMmKpxKKoa/abVyFU7MMRUkdNcievRlXhFrduIrsJ6nsmJLqOpahnwziZzFW5IptbosrCMYizlGLCM8HKCpYJ6LeX0O88OWSqwK6YC0zQKii3HJrmxoBzz1Bo94ktxOqEUn2k7IlYrTYgrhSOhDN/w3pVFFTBpFMTeEb7To+3okFiK1MQSDC4txSy1fFhSgkxWD6vfUDG6E4tht5bRJK4PsXclqQSPy6y1GGGcDfHTZiyPBkmrsJd1QFsf2H89qRB/JRfiw+QiOETstSSvAthrzHDRZM4vspp1JYh9D+ft2vqHkz9wbfnoW1GAQrW82AphTy0AUvOR4eql4LrzqFl3jlxS35oZdT6Gkp0UbOzloYiz37ZsoQeMQ/6Q5qTpjjyilfmIUMuL3Ykeex4+2n6GHm04hUsNp4kMcf1mFwU78tDKM90uF03kuWv2fGTLntySm/YCPGkc8oecHFhycokcDjyilpfsHPRnZ8PefAI1u04Q3armTlRn5cKRk4trN2epNzsX9VLLLbnJ351Y6f0iLwsLC7OIMjJoslpeCrLQz3IcPorqw18S+Yg9yVjGC96K3JKbclute6c8EzNLMomKHIhUy0txJrpLHGjp6aCp54/g0oXPiURS935KwZy1yoyOeylZiSi5WZqOp9Xyj6oM/Mhara0X9uxVdkCel/iFLh8k12UPqqWudMAhGT/TddxLZQbclXb8oK3/uNPxbk06LmjrA/uNnIPVWpOGTNXH6m3TMR/kljsNO7T1n7oUml1nw/W6Fbd/NYS1KcjgvJvza6oT62xI09gHufGiDUOsYT/075n65WiqT8H39VZ6Qq27hl9qmnEjBe+oNXqsj8fDm5Lx1cYkHJcPb7XvGNnh/c6NSdTLL/qQ2qPLq8vx7OZl6Nu89O5/fnjnvdeW8l8PK4WqFRgarfRCgxUD26y0Va3/hOe3yU7jEiSqFVi2L0E6a/CN52/+ZRgJmTFmE4f/pQkYby9G0VuLcUOeat2GZKzrI80ElJ1xWLMzAYM742FXy0tTHBw7EjAkM2qNDc2L0PhBHAZ2xf/zb/z7cTCLx1mDWmNLqwWellhc3G2lSaLWWHwrnsZjT0s8Hmubj5/bF2BD2wK83D4fP4mn8f+D/dFYvz8GvxjiWu2xY3cITfLMQ5JnHm31mNHC6vSYiW5KavY4O2DGMpnVtfvDoTlI6ZiDqx0mDLDOdsyhtsMmNLH3ncioTWg3Mpnh2SNzsVzXA8/R2fiate+4GVO+MNF0rvcei8LZo1H4QyT1sdnYI5nMcP+J7Oh64OmMoLauSPzaGYmGrgjYOiOQxH3O8QgUi6TuCqdkI+MZ1lWud+t64OmNpYknw7GhJwyne8Lx58lwouEkmczIrOzo+v2lx0oTzoUi5NxzmHsmBPEiqcWTTMfGGWd4goL+Bju+STNK9w8BAAAAAElFTkSuQmCC" alt="" class="circle">
+            <h6>Location: </b>{{ user.city }}<br>
+            </h6>
+            <a href="#!" class="secondary-content"><i class="material-icons"></i></a>
+          </li>
+      </ul>
+      <ul class="collection">
+          <li class="collection-item avatar">
+            <img src="data:image/png;base64,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" alt="" class="circle">
+            <h6>Occupation: </b>{{ user.occupation}}<br>
+            </h6>
+            <a href="#!" class="secondary-content"><i class="material-icons"></i></a>
+          </li>
+      </ul>
+    <ul class="collection">
+        <li class="collection-item avatar">
+          <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACgAAAAoCAYAAACM/rhtAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAKdSURBVFhH7ZjLaxNRFMbzv7hQV/oviEmqmS7UjBQ3otAiCipuXCsufSx9IGgFQ6XahZuqqFl0oWgUW1tNmlBpk8Y8m8dMns3jeM+dM1B778TGNLHI/OBbzHx37vnmyZzrsLGx+UucnpG9TkW95VLUyX7K6fHedHmO76eyW+Ogop50Das1NgEMQixk06l4x6h8Zw4cGtnlVtSqcuREe3LqOYQWIxCOLPVFODfWwFosaMM9fGwPxbCGnck1PCvfxDPYTDKZhna7TVsieqnE1Qk8PplK05bB44mndDW9VymGNS6P9xEOnv26QIcbfAh85pNMv3xDe0ROjZ2H0bOXaEuO78kUnwevoMns3DzdanWcYljDzsKHg+e/Belwg0JRg9v3HsDPRJL2iLx49ZarE8srMbhzfxzK5QrtAV4La2JtimGNVcB+0m1APw4+feYCnLt4eSDCWhTQTzGsYQMDxuB/ogDFsMa8xR8/fQFdZ2/lAIS1jID/yTP4W8BEToPv0bSgaLrA/WarDatrulToIVm9KvXz5Rr3ewr4I5GD98GooGAsw/1GswXhRF4q9JB4riT1U0XjU2MHlBVH2QGRHR9wTavACntjNytdMP5aWuxNzbAxMqGHFCt1qa9X17nfU8BB0FPAUrUOWa0sSKsY3zC8SjIfZV7BRKECSylNUEarcr+ngH96BmvrTamPQg+ZnovBXX9I0Myi8etmB5T5KDsgsvMCmk0Ta2SQ5VQeAuFVQeF4lvv1RlPqo9BDXi/E4eFMRNC7iNHdddU0mW0ntoKDYkPbeYViWIPNMxvcMBv3YCgsNNzbJZx7Y+M+NKTuphidwWUIXI4wzqr/4ksfh9VRKr81cEGHPY832ATSRZ9t1HW3cnQflbWxsekOh+MXE2ugzDkAXDQAAAAASUVORK5CYII=" alt="" class="circle">
+          <h6>Account Created: </b>{{ user.date_joined|date:'d-m-Y' }}<br>
+          </h6>
+          <a href="#!" class="secondary-content"><i class="material-icons"></i></a>
+        </li>
+    </ul> 
+    <ul class="collection">
+        <li class="collection-item avatar">
+          <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACgAAAAoCAYAAACM/rhtAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAO+SURBVFhH7ZbfT5t1FMarUeedP2KMzlmibOtkbXArA2FlbBMsjh8dG1BKW2HtWjQgakwkzkS8cEIkRowSY5ZojHaCiRJ1MU5iuODGeKES4x+giVEwXqnBX3sev+ftCakWxht9eTGRT/Lk+32f85zvOeGiwbPJJrbhJdv6ERDJXc3/BiX9qPb2Y97bT+aFefG0vHFsvx9bSvs4Wnov/ijtw8u+fmzd0Yeb5J73OFrSwys17i6+LCp8GXy5K4tvdmXQpPYy4klNMpJVe/0p6+AV/pN40p/G74GTeC1wH68Rv9z85cx3RrQnha3iSU0ykjU6Lb3irxsVKewJpvD53hP4LpjiUbU9e1M4VJHGzzUDWBLJPZjmQS17gr2IWD0nMC9vqO0cwSwvr+zB41U9+M2ck+b7Oi1ZVKfxdXIEGP+IFMm9OoWvtGwhPZW9eMN6oxfD8qaW/h11CfhDCXxam8BiKMkOtZe5I41ra5PkC5Pk2fN5PT9Fiic1jS0jb9QmsSBvHuiWn6R/SF0dLzscx6lDcfxizrcaErheS39heJiX3hnHT2PPkTPn8np6nDT5H1f7PZS35E3z9q8yQ2ZpyR6NcZSFY/jY6IdwF2Jqr8pdMQw0xnDh1KOA0QW5i6flVTG5Lplhsp/ITLUvTnMXBps7sdQUxbvhOG5Ue01aooi0xjDVGsWU6W9Re02OdPAGk39HZz6g9spE2hE41k4eP44etVyjrR33yGzZQa1iohHc3NmGpegxciNkzTY76DorI4FkK+u7I+hOHCXllG83vHgbtukaa5NtpjfVQqZaMGI0pDJ3UmoaczxnG2nKNpGZI5jLNOFbS+Yu3t8HO5mzzaBpGribtM5G5ESFnsYcz9lmsJ7eh8Km2ZwPhpETFXoaczxnmyHT9EgDKefDDfCLCj2NOZ6zjTQ9drh4yHp7thk2TU8cJOVUyxXPNqP76X3qACnn6VqkRYWexhzP2UaaxkL55rEQcqJCT2OO52wzbprGa8w/oOZ8tgY5UaGnMcdztnkpSO9EFTlRiZGJKnxmybqTUtOY4znbSNOZfeSZfZgzmlGZe/FgJ3O2edU0vRIk5VTLFc8WZ8vR+Xo5FnO3k25IZslMHb82bwbw/VQAz0wGWO+GZJbRgo6/OG/vRum0n5zejRen/RhyRdYsUmbrGiszcyuveq8Mi+fK8IU5Z9yUNfM2LMgOuk4x53di/4c+8v3t2KKWa8hMmf2BDzVqFTO7k6HZHeSGyuyg6xQzW8Kr525h/UZKdtB1Nvk/4PH8CQ0WSI4HWgDJAAAAAElFTkSuQmCC" alt="" class="circle">
+          <h6>Account No: </b>{{ user.account_no }}<br>
+          </h6>
+          <a href="#!" class="secondary-content"><i class="material-icons"></i></a>
+        </li>
+    </ul>
   </div>
 
 </div>
+  <ul class="collection">
+    <li class="collection-item avatar">
+      <img src="images/yuna.jpg" alt="" class="circle">
+      <!-- <span class="title">Title</span> -->
+      <h4 style="text-align:center;">ACCOUNT BALANCE: {{ user.balance }} Kshs
+      </h4>
+      <div style="text-align:center;">      
+        <a class="waves-effect waves-light btn" href="{% url 'deposit' %}">Deposit</a>
+        <a class="waves-effect waves-light btn" href="{% url 'withdrawal' %}">Withdraw</a>
+      </div>
+
+    </li>
+  </ul>  
 
 <hr>
 
   <div class="page-header">
   <h2 class="text-center"><b>Transaction Details</b></h2>
 </div>
-
-<h3>Deposit Details</h3>
-<table class="table table-hover table-bordered">
-  <thead>
-    <tr>
-      <th>#</th>
-      <th>Date / Time</th>
-      <th>Details</th>
-      <th>Amount ($)</th>
-    </tr>
-  </thead>
-  <tbody>
+<div>
+<div class="row">
+  <div class="col-md-6">  
+  <h4 style ="text-align: center;" >My Desposits</h4>
+  <!-- <table class="table table-hover table-bordered">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Date / Time</th>
+        <th>Details</th>
+        <th>Amount (Kshs)</th>
+      </tr>
+    </thead>
+    <tbody>
     <tr>
     {% for obj in deposit %}
       <th scope="row">{{forloop.counter}}</th>
@@ -65,41 +139,90 @@
     </tr>
    
   </tbody>
-</table>
+</table>       -->
 <hr>
+    <ul class="collection">
+      {% for obj in deposit %}
+      <li class="collection-item avatar">
+        <img src="https://img.icons8.com/dusk/50/000000/coins.png" alt="" class="circle">
+        <span class="title"><h6>Deposit: {{forloop.counter}}</h6> </span>
+        <p><h6>Date: {{ obj.timestamp }}</h6>
+          <h6>Amount: {{ obj.amount }}</h6>
+          <!-- <h6>Total: {{ deposit_sum }} Kshs</h6> -->
+        </p>
+        <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a>
+      </li>
+      {% endfor %}
+    </ul>
+    <ul class="collection">
+      <li class="collection-item avatar">
+          <img src="data:image/png;base64,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" alt="" class="circle">
+          <span class="title"></span>
+          <p>
+            <h6>Total: {{ deposit_sum }} Kshs</h6>
+          </p>
+          <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a>
+      </li>
+    </ul>
+  </div>
 
+  <div class="col-md-6">
+  <h4 style ="text-align: center;"> My Withdrawals</h4>
+  <!-- <table class="table table-hover table-bordered">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Date / Time</th>
+        <th>Details</th>
+        <th>Amount (Kshs)</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+      {% for obj in withdrawal %}
+        <th scope="row">{{forloop.counter}}</th>
+        <td>{{ obj.timestamp }}</td>
+        <td>Withdrawal</td>
+        <td>{{ obj.amount }}</td>
+      </tr>
+      {% endfor %}
+      <tr>
+        <th class="text-right" scope="row" colspan="3">Total</th>
 
-<h3>Withdrawal Details</h3>
-<table class="table table-hover table-bordered">
-  <thead>
-    <tr>
-      <th>#</th>
-      <th>Date / Time</th>
-      <th>Details</th>
-      <th>Amount ($)</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-    {% for obj in withdrawal %}
-      <th scope="row">{{forloop.counter}}</th>
-      <td>{{ obj.timestamp }}</td>
-      <td>Withdrawal</td>
-      <td>{{ obj.amount }}</td>
-    </tr>
-    {% endfor %}
-    <tr>
-      <th class="text-right" scope="row" colspan="3">Total</th>
+        <td>{{ withdrawal_sum }}</td>
+      </tr>
+    
+    </tbody>
+  </table> -->
+  <hr>
 
-      <td>{{ withdrawal_sum }}</td>
-    </tr>
-   
-  </tbody>
-</table>
-<hr>
+  <ul class="collection">
+      {% for obj in withdrawal %}
+      <li class="collection-item avatar">
+        <img src="data:image/png;base64,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" alt="" class="circle">
+        <span class="title"><h6>Withdrawal: {{forloop.counter}}</h6> </span>
+        <p><h6>Date: {{ obj.timestamp }}</h6>
+          <h6>Amount: {{ obj.amount }}</h6>
+          <!-- <h6>Total: {{ withdrawal_sum }} Kshs</h6> -->
+        </p>
+        <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a>
+      </li>
+      {% endfor %}
+    </ul>
+    <ul class="collection">
+        <li class="collection-item avatar">
+            <img src="data:image/png;base64,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" alt="" class="circle">
+            <span class="title"></span>
+            <p>
+              <h6>Total: {{ withdrawal_sum }} Kshs</h6>
+            </p>
+            <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a>
+        </li>
+      </ul>
+  </div>
+</div>
 
-
-<h3>Interest Details</h3>
+<!-- <h4>Interest Details</h4>
 <table class="table table-hover table-bordered">
   <thead>
     <tr>
@@ -126,6 +249,6 @@
    
   </tbody>
 </table>
-<hr>
+<hr> -->
 
 {% endblock content %}

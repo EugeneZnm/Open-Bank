@@ -9,5 +9,5 @@ kombu==4.1.0
 olefile==0.44
 Pillow==4.2.1
 redis==2.10.6
-vine==1.1.4alizecss-form==1.1.10
 pytz==2018.7
+psycopg2-binary==2.7.5

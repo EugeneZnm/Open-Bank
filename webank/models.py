@@ -1,130 +1,131 @@
-from __future__ import unicode_literals
-from django.db import models
-from django.urls import reverse
-from django.core.validators import ( RegexValidator, MinValueValidator, MaxValueValidator )
-# from .managers import UserManager
-from django.contrib.auth.models import (AbstractBaseUser, BaseUserManager)
-from django.db.models import Max
-from django.db.models.signals import pre_save
-from django.dispatch import receiver
+# from __future__ import unicode_literals
+# from django.db import models
+# from django.urls import reverse
+# from django.core.validators import ( RegexValidator, MinValueValidator, MaxValueValidator )
+# # from .managers import UserManager
+# from django.contrib.auth.models import AbstractUser, UserManager
+# from django.db.models import Max
+# from django.db.models.signals import pre_save
+# from django.dispatch import receiver
 
-from decimal import Decimal
-from django.conf import settings
+# from decimal import Decimal
+# from django.conf import settings
 
 # Accounts models here.
 
 
-# name validator
-Name_Regex = '^[a-zA-Z ]*S'
+# from __future__ import unicode_literals
+from django.contrib.auth.models import AbstractUser
+from django.core.validators import (
+    RegexValidator,
+    MinValueValidator,
+    MaxValueValidator
+    )
+from django.db import models
+from django.urls import reverse
+from django.db.models import Max
+from django.db.models.signals import pre_save
+from django.dispatch import receiver
+from django.contrib.auth.base_user import BaseUserManager
 
-# determining user gender types
+from decimal import Decimal
+from django.conf import settings
+from django.core.validators import MinValueValidator
+from .managers import UserManager
+
+User = settings.AUTH_USER_MODEL
+
+NAME_REGEX = '^[a-zA-Z ]*$'
+
 GENDER_CHOICE = (
     ("Male", "Male"),
     ("Female", "Female"),
-    ("None", "None"),
-)
-
-# user account type choice
-Account_Choice = (
-    ("Current Account", "Current Account"),
-    ("Savings Account", "Savings Account"),
-)
-
-# User_Type = (
-#     ("Business", "Business"),
-#     ("Individual", "")
-# )
+    )
 
 
-class User(AbstractBaseUser):
-    """
-    user details including name and account details
-    """
+class User(AbstractUser):
     username = None
     first_name = None
     last_name = None
 
-    # user account details
     account_no = models.PositiveIntegerField(
-        #validating minimum and maximum values of account numbers
         unique=True,
-        validators = [
-            MinValueValidator(1000000),
-            MaxValueValidator(999999999999),
-        ]
-    )
+        validators=[
+            MinValueValidator(10000000),
+            MaxValueValidator(99999999)
+            ]
+        )
 
-    # validating user name, restricted to alphabets
     full_name = models.CharField(
-
-        max_length=300,
+        max_length=256,
         blank=False,
-        validators = [
-            RegexValidator(
-                regex= Name_Regex,
-                message='User Name must be Alphabetic',
-                code = 'invalid full name'
-            )
-        ]
-    )
+        validators=[
+                RegexValidator(
+                    regex=NAME_REGEX,
+                    message='Name must be Alphabetic',
+                    code='invalid_full_name'
+                    )
+                ]
+        )
 
     gender = models.CharField(max_length=6, choices=GENDER_CHOICE)
-    born = models.DateField(null=True, blank=True)
+    birth_date = models.DateField(null=True, blank=True)
     email = models.EmailField(unique=True, blank=False)
-    phone = models.IntegerField(unique=True)
+    contact_no = models.IntegerField(unique=True)
+    Address = models.CharField(max_length=512)
     city = models.CharField(max_length=256)
-    nationality = models.CharField(max_length=300)
-    account_type = models.CharField(max_length=14, choices=Account_Choice)
+    country = models.CharField(max_length=256)
+    nationality = models.CharField(max_length=256)
+    occupation = models.CharField(max_length=256)
     balance = models.DecimalField(
         default=0,
         max_digits=12,
         decimal_places=2
-    )
-
+        )
     picture = models.ImageField(
         null=True,
         blank=True,
         height_field="height_field",
         width_field="width_field",
-    )
+        )
 
-    height_field = models.IntegerField(defualt= 500, null=True)
-    width_field = models.IntegerField(defualt = 500, null=True)
+    height_field = models.IntegerField(default=600, null=True)
+    width_field = models.IntegerField(default=600, null=True)
 
-    objects = BaseUserManager()
+    objects = UserManager()
 
-    USERNAME_FIELD = "email"
-    REQUIRED_FIELDS = []
+    USERNAME_FIELD = 'email'  # use email to log in
+    REQUIRED_FIELDS = []  # required when user is created
 
-
-@receiver(pre_save,sender=User)
+@receiver(pre_save, sender=User)
 def create_account_no(sender, instance, *args, **kwargs):
-# checking whether user has account number
+    # checks if user has an account number
     if not instance.account_no:
-        # getting largest account number
+        # gets the largest account number
         largest = User.objects.all().aggregate(
-            Max("account_no"))['account_no__Max']
+            Max("account_no")
+            )['account_no__max']
+
         if largest:
-            # creatigaccount new number
+            # creates new account number
             instance.account_no = largest + 1
         else:
-            instance.account_no = 1000000
+            # if there is no other user, sets users account number to 10000000.
+            instance.account_no = 10000000
 
     def __str__(self):
         return str(self.account_no)
 
-
 # transactions models
 class Deposit(models.Model):
-    """ Models for user deposit """
-    user = models.ForeignKey(User)
+    user = models.ForeignKey('User')
     amount = models.DecimalField(
-        decimal_places=2,
-        max_digits=12,
-        validators=[
-            MinValueValidator(Decimal('100.00'))
-        ]
-    )
+      decimal_places=2,
+      max_digits=12,
+      validators=[
+          MinValueValidator(Decimal('10.00'))
+          ]
+      )
     timestamp = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
@@ -134,13 +135,12 @@ class Deposit(models.Model):
 class Withdrawal(models.Model):
     user = models.ForeignKey(User)
     amount = models.DecimalField(
-        decimal_places=2,
-        max_digits=12,
-        validators=[
-            MinValueValidator(Decimal('50.00'))
-        ]
-    )
-
+      decimal_places=2,
+      max_digits=12,
+      validators=[
+          MinValueValidator(Decimal('10.00'))
+          ]
+      )
     timestamp = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
