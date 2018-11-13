@@ -1,0 +1,119 @@
+{% extends 'base.html'%}
+{% load static %} {% load bootstrap4 %}
+% load humanize %}
+{% block content %}
+
+
+<head>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script
+</head>
+
+<body>
+
+    <div class="container">
+
+
+  <h1><a href="/">{{account.name}}</a></h1>
+        <section class="section section-stats">
+            <div class="row">
+                <div class="col s12 m12 l4">
+                    <div class="card-panel" >
+                        <h6 style="color:blue;">Total Budget</h6>
+                        <h3 style="color:green;">Ksh. {{ account.budget  }}</h3>
+                    </div>
+                </div>
+                <div class="col s12 m12 l4">
+                    <div class="card-panel">
+                        <h6 style="color:blue;">Budget Left</h6>
+                        {% if account.budget_left > 0 %}
+                        <h3 class="bold green-text">Ksh. {{ account.budget_left }}</h3>
+                        {% elif account.budget_left == 0 %}
+                        <h3 class="bold orange-text">Ksh. {{ account.budget_left }}</h3>
+                        {% else %}
+                        <h3 class="bold red-text">Ksh. {{ account.budget_left }}</h3>
+                        {% endif %}
+                    </div>
+                </div>
+                <div class="col s12 m12 l4">
+                    <div class="card-panel">
+                        <h6 style="color:blue;">Total Transactions</h6>
+                        <h3 style="color:black;">{{ account.expenses.count }}</h3>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="section section-expenses">
+            <div class="row">
+                <button class="btn waves-effect right modal-trigger" ><i class="material-icons white-text left">add_circle</i><a href="{% url 'finplanner:create_expense' %}" style="color:#fff">Add Expense</a></button>
+            </div>
+            <ul class="z-depth-1">
+                {% for expense in account.expenses.all %}
+                <li>
+                    <div class="card-panel z-depth-0 expense" style="color:blue;">
+                        <div class="row">
+                            <div class="col l6">
+                                <span class="title">{{ expense.description }}</span>
+                            </div>
+                            <div class="col l3">
+                                <span class="title">{{ expense.amount }}</span>
+                            </div>
+                            <div class="col l1">
+                                <span class="title">{{ expense.created_at }}</span>
+                            </div>
+                            <a class="close-icon" onclick="deleteExpense(this)" data-id="{{ expense.id}}">
+                                <i class="material-icons red-text right" >close</i>
+                            </a>
+                        </div>
+                    </div>
+                </li>
+                {% endfor%}
+            </ul>
+        </section>
+    <date
+    <div id="expenseModal" class="modal">
+        <div class="modal-content">
+            <h4>Add Expense</h4>
+
+            <form method="POST">
+                {% csrf_token %}
+                <label for="date">Date</label>
+                <input name="date" id="date">
+                <label for="description">Description</label>
+                <input name="description" id="description">
+                <label for="category">Category</label>
+                <input name="category" id="category">
+
+                <label for="account">Account</label>
+                <input name="account" id="account">
+                <label for="amount">Amount</label>
+                <input name="amount" id="amount">
+                <button type="submit" class="btn">Add</button>
+            </form>
+        </div>
+    </div>
+    <script>
+        var elem = document.querySelector('.modal')
+        var instance = M.Modal.init(elem)
+        var elem = document.querySelector('select')
+        var instance = M.FormSelect.init(elem)
+        function deleteExpense(e) {
+            let id = e.dataset.id
+            e.closest('li').remove()
+            fetch('', {
+                method: 'DELETE',
+                headers: {
+                  'X-CSRFToken': '{{ csrf_token }}'
+                },
+                body: JSON.stringify({
+                    'id':id
+                }),
+                credentials: 'same-origin',
+            })
+        }
+    </script>
+        </div>
+  </body>
+
+{% endblock %}

@@ -1,0 +1,52 @@
+{% load bootstrap4 %}
+{% load static%}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <!-- Font Awesome -->
+ <!-- <link rel="stylesheet" href="{% static 'css/all.css' %}"> -->
+ <!-- Bootstrap -->
+ <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+ <!-- Custom -->
+ <link rel="stylesheet" href="{% static 'css/style.css' %}">
+ <script src="http://code.jquery.com/jquery-2.2.4.min.js"></script>
+
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js"></script>
+
+   <link href="https://fonts.googleapis.com/css?family=Nanum+Pen+Script" rel="stylesheet">
+   <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+     rel="stylesheet">
+
+   <!-- Compiled and minified CSS -->
+   <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css"> -->
+
+   <!-- Compiled and minified JavaScript -->
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>
+
+
+
+   <link href="https://fonts.googleapis.com/css?family=Dancing+Script" rel="stylesheet">
+   <link href="https://fonts.googleapis.com/css?family=Josefin+Sans" rel="stylesheet">
+
+
+
+  <title>FinPro</title>
+</head>
+<body>
+  {% include 'navbar.html'%}
+
+ {% block content %}
+
+  {%endblock%}
+
+ <script src="{% static 'js/jquery-3.3.1.min.js' %}"></script>
+ <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+ <script src="{% static 'js/main.js' %}"></script>
+ <!-- <script src="{% static 'js/lightbox.min.js' %}"></script> -->
+
+</body>
+</html>

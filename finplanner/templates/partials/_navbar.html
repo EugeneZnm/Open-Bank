@@ -1,0 +1,38 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/css/materialize.min.css">
+<!-- Compiled and minified JavaScript -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/js/materialize.min.js"></script>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<div class=" ">
+    <nav>
+        <div class="nav-wrapper blue-grey">
+            <a href="#!" class="brand-logo" style="text-decoration:none">Bloggy</a>
+            <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
+            <ul class="right hide-on-med-and-down">
+                <li><a href="" class="btn waves-effect waves-light deep-orange lighten-2">Register/Login</a></li>
+                <li><a href="" class="btn waves-effect waves-light deep-orange lighten-2">Contact Us</a></li>
+            </ul>
+            <form class=" hide-on-med-and-down" id="form1">
+                <div class="input-field" style="max-width: 400pt;">
+                    <input id="search" type="search" required onkeyup="getBlogs(this.value,0);">
+                    <label class="label-icon" for="search"><i class="material-icons">search</i></label>
+                    <i class="material-icons">close</i>
+                    <div id="searchResults"></div>
+                </div>
+            </form>
+            <ul class="side-nav" id="mobile-demo">
+                <li><a href="">Sign Up</a></li>
+                <li><a href="">Login</a></li>
+                <li><a href="">Contact Us</a></li>
+                <li class="search">
+                    <div class="search-wrapper card input-field">
+                        <input type="search" required onkeyup="getBlogs(this.value,1);">
+                        <label class="label-icon" for="search"><i class="material-icons">search</i></label>
+                        <i class="material-icons">close</i>
+                        <div id="searchResults2"></div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </nav>
+</div>
+<html>
